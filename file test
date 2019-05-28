@@ -1,0 +1,35 @@
+ public List<Vector2Int> CurrentCheck, All;
+    public bool isOk;
+
+    bool Check1(Vector2Int pos, Vector2Int delta)
+    {
+        for (int i = 0; i < CurrentCheck.Count; i++)
+        {
+            if (CurrentCheck[i] == pos) continue;
+            if (!All.Contains(CurrentCheck[i] + delta)) return false;
+        }
+        return true;
+    }
+    bool Check()
+    {
+        print("Check");
+        for (int j = 0; j < CurrentCheck.Count; j++)
+        {
+            bool _vl = false;
+            for (int i = 0; i < All.Count; i++)
+            {
+                if (Check1(CurrentCheck[j], All[i] - CurrentCheck[j]))
+                    _vl = true;
+                //    Vector2Int delta = All[i] - CurrentCheck[j];
+
+                //    for (int k = 0; k < CurrentCheck.Count; k++)
+                //    {
+                //        if (k == j) continue;
+                //        print("Check " + CurrentCheck[k] + delta + " <====> " + (CurrentCheck[k] + delta));
+                //        if (All.Contains(CurrentCheck[k] + delta)) { print("Ok :" + CurrentCheck[k]); _vl = true; break; };
+                //    }
+            }
+            if (!_vl) return false;
+        }
+        return true;
+    }
